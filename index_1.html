@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Turunan</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.5.1/math.min.js"></script>
+    <style>
+        div[class="calculator"]{
+    /* membuat ukuran kotak */
+        border:1px;
+        width:500px;
+    height:550px;
+    padding-bottom:100px;
+     background-image:url('9aa7d210fbc08602d874386d03a90ff0.jpg'); 
+    margin-left:430px;
+    color:white;
+    /* menghilangkan sudut pada kotak */
+    border-radius:20px;
+    /* memberikan efek bayangan  */
+    box-shadow:0px 0px 20px rgba(0,0,0.75);
+    /* membuat gambar agar tampilan memenuhi kotak  */
+    background-size: cover;
+    background-position:center;
+    overflow:hidden; 
+
+   
+        display:block;
+        box-sizing:border-box;
+        padding:120px;
+        
+        height:100%;
+        /* membuat warna tampilan kotak */
+        backdrop-filter: brightness(55%);
+        
+        flex-direction: column;
+        /* membuat agar semua tampilan login sejajar */
+        display:flex;
+        /* memberikan spasi tiap baris */
+        gap:20px;
+    }
+
+h2 {
+    text-align: center;
+margin-bottom:10px
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+textarea[id="functionInput"]{
+    background-color: rgba(225, 225, 225, 0.3);
+border-radius: 20px;
+padding-bottom:60px;
+color:white;
+font-size:15px;
+
+}
+
+
+button {
+    width:210px;
+    padding:10px;
+    box-shadow: 0px 0px 20px rgb(218, 13, 13);
+background-color:red;
+border:none;
+border-radius:20px;
+margin-left:20px;
+color:white
+
+}
+
+button:hover {
+    background-color:red;
+    box-shadow: 0px 0px 50px rgb(218, 13, 13);
+}
+
+h2 {
+    text-align: center;
+
+}
+p{
+    font-size:28px;
+}
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>Kalkulator Turunan</h2>
+        <textarea id="functionInput" placeholder="Masukan soal contoh : x^2 atau sin(x)" rows="4"></textarea> <br>
+        <button onclick="calculateDerivative()">Hitung Turunan</button>
+        <div class="result">
+            <p>Turunan: <span id="derivativeResult"></span></p><br>
+        </div>
+    </div> 
+
+    <script> 
+        function calculateDerivative() {
+            // Ambil input dari pengguna
+            const func = document.getElementById('functionInput').value;
+
+            try {
+                // Periksa jika input kosong
+                if (func === "") {
+                    alert("Masukkan soal terlebih dahulu!");
+                    return;
+                }
+
+                // Menggunakan math.js untuk menghitung turunan
+                const expr = math.parse(func); // Parsing fungsi
+                const derivative = math.derivative(expr, 'x'); // Menghitung turunan terhadap 'x'
+                
+                // Menampilkan hasil turunan
+                document.getElementById('derivativeResult').textContent = derivative.toString();
+            } catch (error) {
+                // Menangani error jika ada masalah dengan fungsi yang dimasukkan
+                document.getElementById('derivativeResult').textContent = "Error dalam perhitungan turunan.";
+            }
+        }
+    </script>
+</body>
+</html>
